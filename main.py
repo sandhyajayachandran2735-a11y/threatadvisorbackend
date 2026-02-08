@@ -1,8 +1,18 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
 
 app = FastAPI(title="Threat Advisor & Risk Assessment API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://threat-watch-a-vdup1-gxdfnq8gk.vercel.app",  # 👈 YOUR VERCEL FRONTEND
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ===============================
 # Input Schemas
